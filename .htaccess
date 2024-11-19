@@ -1,0 +1,11 @@
+RewriteEngine Off
+
+# Allow direct access to specific .php files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/(admin|lobby|dashboard|footer|header|index|login|play|profile|logout|pvp|register)\.php$ [NC]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Optional: Redirect .php URLs to clean URLs
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
